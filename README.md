@@ -11,7 +11,8 @@
 
 
 Tetris game made with C++ and OpenGL
-Еhe classic Tetris game without using game engines in this project. The basis for the game is the GLFW library, but
+-
+The classic Tetris game without using game engines in this project. The basis for the game is the GLFW library, but
 the SFML library is used to read keystrokes due to a simplified implementation. The control is implemented on the keys A, S, D, E, where
   A - is the movement to the left
   S - is the acceleration of the fall of the figure
