@@ -11,7 +11,7 @@ ResourceIncludes=
 MakeIncludes=
 Compiler=
 CppCompiler=_@@_
-Linker="../../../../../Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib32/glfw3.dll"_@@_../GLFW/glew32.dll_@@_
+Linker=glfw3.dll_@@_glew32.dll_@@_
 IsCpp=1
 Icon=
 ExeOutput=
@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=4
 CompilerSettings=0000000100000000001000000
-UnitCount=3
+UnitCount=2
 
 [VersionInfo]
 Major=1

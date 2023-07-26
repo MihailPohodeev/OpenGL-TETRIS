@@ -205,7 +205,7 @@ public:
 	// конструктов
 	figure(){
 		for (int i = 0; i < 4; i++){
-			elem_array[i] = new element(20, 20);
+			elem_array[i] = new element(18, 18);
 		}
 		position = glm::vec2(0.f, 0.f);
 	}
@@ -237,6 +237,7 @@ public:
 	glm::vec2 getPosition() {return position;}
 	
 	virtual void rotate() {;}
+	virtual void rotate_back() {;}
 
 };
 
@@ -297,6 +298,22 @@ public:
 		rot_index++;
 		if (rot_index >= 2) rot_index = 0;
 	}
+	
+	void rotate_back(){
+		rot_index -= 2;
+		if (rot_index < 0){
+			rot_index = 2 + rot_index;
+		}
+		
+		elem_array[0]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][0]);
+		elem_array[1]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][1]);
+		elem_array[2]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][2]);
+		elem_array[3]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][3]);
+		
+		rot_index++;
+		if (rot_index >= 2) rot_index = 0;
+	}
+	
 };
 
 // фигура в виде "S"
@@ -340,6 +357,20 @@ public:
 		rot_index++;
 		if (rot_index >= 2) rot_index = 0;
 	}
+	void rotate_back(){
+		rot_index -= 2;
+		if (rot_index < 0){
+			rot_index = 2 + rot_index;
+		}
+		
+		elem_array[0]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][0]);
+		elem_array[1]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][1]);
+		elem_array[2]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][2]);
+		elem_array[3]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][3]);
+		
+		rot_index++;
+		if (rot_index >= 2) rot_index = 0;
+	}
 };
 
 // фигура в виде "Z"
@@ -374,6 +405,21 @@ public:
 	}
 	
 	void rotate(){
+		
+		elem_array[0]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][0]);
+		elem_array[1]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][1]);
+		elem_array[2]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][2]);
+		elem_array[3]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][3]);
+		
+		rot_index++;
+		if (rot_index >= 2) rot_index = 0;
+	}
+	
+	void rotate_back(){
+		rot_index -= 2;
+		if (rot_index < 0){
+			rot_index = 2 + rot_index;
+		}
 		
 		elem_array[0]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][0]);
 		elem_array[1]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][1]);
@@ -436,6 +482,21 @@ public:
 		if (rot_index >= 4) rot_index = 0;
 	}
 	
+	void rotate_back(){
+		rot_index -= 2;
+		if (rot_index < 0){
+			rot_index = 4 + rot_index;
+		}
+		
+		elem_array[0]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][0]);
+		elem_array[1]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][1]);
+		elem_array[2]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][2]);
+		elem_array[3]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][3]);
+		
+		rot_index++;
+		if (rot_index >= 4) rot_index = 0;
+	}
+	
 };
 
 // фигура в виде "L"
@@ -451,14 +512,14 @@ public:
 		}
 		
 		rot_positions[0][0] = glm::vec2(0.f, 0.f);
-		rot_positions[0][1] = glm::vec2(-20.f, 0.f);
-		rot_positions[0][2] = glm::vec2(-20.f, 20.f);
-		rot_positions[0][3] = glm::vec2(-20.f, 40.f);
+		rot_positions[0][1] = glm::vec2(0.f, 20.f);
+		rot_positions[0][2] = glm::vec2(0.f, 40.f);
+		rot_positions[0][3] = glm::vec2(20.f, 0.f);
 		
 		rot_positions[1][0] = glm::vec2(0.f, 0.f);
-		rot_positions[1][1] = glm::vec2(0.f, 20.f);
-		rot_positions[1][2] = glm::vec2(20.f, 20.f);
-		rot_positions[1][3] = glm::vec2(40.f, 20.f);
+		rot_positions[1][1] = glm::vec2(20.f, 0.f);
+		rot_positions[1][2] = glm::vec2(40.f, 0.f);
+		rot_positions[1][3] = glm::vec2(0.f, -20.f);
 		
 		rot_positions[2][0] = glm::vec2(0.f, 0.f);
 		rot_positions[2][1] = glm::vec2(0.f, 20.f);
@@ -489,18 +550,101 @@ public:
 		if (rot_index >= 4) rot_index = 0;
 	}
 	
+	void rotate_back(){
+		rot_index -= 2;
+		if (rot_index < 0){
+			rot_index = 4 + rot_index;
+		}
+		
+		elem_array[0]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][0]);
+		elem_array[1]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][1]);
+		elem_array[2]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][2]);
+		elem_array[3]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][3]);
+		
+		rot_index++;
+		if (rot_index >= 4) rot_index = 0;
+	}
+	
+};
+
+// фигура в виде "L"
+class T_figure : public figure{
+	
+	glm::vec2 rot_positions[4][4];
+	int rot_index;
+	
+public:
+	T_figure() : figure(){
+		for(int i = 0; i < 4; i++){
+			elem_array[i]->color = glm::vec4(.08f, .84f, .53f, 1.f);
+		}
+		
+		rot_positions[0][0] = glm::vec2(0.f, 0.f);
+		rot_positions[0][1] = glm::vec2(0.f, 20.f);
+		rot_positions[0][2] = glm::vec2(20.f, 20.f);
+		rot_positions[0][3] = glm::vec2(-20.f, 20.f);
+		
+		rot_positions[1][0] = glm::vec2(0.f, 0.f);
+		rot_positions[1][1] = glm::vec2(0.f, 20.f);
+		rot_positions[1][2] = glm::vec2(0.f, 40.f);
+		rot_positions[1][3] = glm::vec2(20.f, 20.f);
+		
+		rot_positions[2][0] = glm::vec2(0.f, 0.f);
+		rot_positions[2][1] = glm::vec2(-20.f, 0.f);
+		rot_positions[2][2] = glm::vec2(20.f, 0.f);
+		rot_positions[2][3] = glm::vec2(0.f, 20.f);
+		
+		rot_positions[3][0] = glm::vec2(0.f, 0.f);
+		rot_positions[3][1] = glm::vec2(0.f, 20.f);
+		rot_positions[3][2] = glm::vec2(0.f, 40.f);
+		rot_positions[3][3] = glm::vec2(-20.f, 20.f);
+		
+		elem_array[0]->setPosition(rot_positions[0][0]);
+		elem_array[1]->setPosition(rot_positions[0][1]);
+		elem_array[2]->setPosition(rot_positions[0][2]);
+		elem_array[3]->setPosition(rot_positions[0][3]);
+		
+		rot_index = 1;
+	}
+	
+	void rotate(){
+		
+		elem_array[0]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][0]);
+		elem_array[1]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][1]);
+		elem_array[2]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][2]);
+		elem_array[3]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][3]);
+		
+		rot_index++;
+		if (rot_index >= 4) rot_index = 0;
+	}
+	
+	void rotate_back(){
+		rot_index -= 2;
+		if (rot_index < 0){
+			rot_index = 4 + rot_index;
+		}
+		
+		elem_array[0]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][0]);
+		elem_array[1]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][1]);
+		elem_array[2]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][2]);
+		elem_array[3]->setPosition(elem_array[0]->getPosition() + rot_positions[rot_index][3]);
+		
+		rot_index++;
+		if (rot_index >= 4) rot_index = 0;
+	}
+	
 };
 
 
 int main(){
-	
+	// инициализация glfw
 	glfwInit();	
 	
-	
+	// создание окна
 	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "window", NULL, NULL);
 	glfwMakeContextCurrent(window);
 	
-	
+	// инициализация glew
 	glewExperimental = GL_TRUE;
 	if (glewInit() != GLEW_OK)
 	{
@@ -511,69 +655,122 @@ int main(){
 	
 	//~~~~~VARIABLES~~~~~
 	
-	figure *all_varieties[6] = {new O_figure(), new I_figure(), new J_figure(), new L_figure(), new S_figure(), new Z_figure()};
+	// массив разнообразных фигур
+	figure *all_varieties[7] = {new O_figure(), new I_figure(), new J_figure(), new L_figure(), new S_figure(), new Z_figure(), new T_figure()};
 	
+	int score = 0;
+	int score_speed_up = 0;
+	
+	// скорость движения объекта
 	float speed = 1.f;
-	figure *current_figure = all_varieties[GetRandomNumber(0, 5)];
+	figure *current_figure = all_varieties[GetRandomNumber(0, 6)];
 	current_figure->setPosition(glm::vec2(0.f, 200.f));
 	
+	// массив элементов
 	element *elements_matrix[10][20];
+	// обнуление объектов в массиве элементов
 	for(int i = 0; i < 10; i++)
 		for(int j = 0; j < 20; j++){
 			elements_matrix[i][j] = NULL;
 		}
+	enum direction {NONE, RIGHT, LEFT};
 	
 	bool oneClick = false;
+	bool oneClickPause = false;
+	bool pause = false;
+	bool gameOver = false;
 	
+	// игровой цикл
 	while(!glfwWindowShouldClose(window)){
+		
+		// проверка событий
 		glfwPollEvents();
 		
+		if (gameOver){
+			glfwSetWindowShouldClose(window, 1);
+			cout<<"GaMe_OvEr!\n";
+		}
+		
+		if (sf::Keyboard::isKeyPressed(Keyboard::Q)){
+			if (!oneClickPause){
+				pause = !pause;
+			}
+			oneClickPause = true;
+		} else oneClickPause = false;
+		if (pause) continue;
+		
+		
+		// отрисовка цвета заднего фона
 		glClearColor(0.01f, 0.05f, 0.04f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 		
+		// отрисовка объектов матрицы
 		for(int i = 0; i < 10; i++)
 			for(int j = 0; j < 20; j++){
-				if (elements_matrix[i][j] != NULL)
+				if (elements_matrix[i][j] != NULL){
 					elements_matrix[i][j]->draw();
+				}
 			}
+		if (score >= 5)
+			speed = 1.0f / (score / 5);
 		
+		// действие по нажатию клавиши A
 		if (sf::Keyboard::isKeyPressed(Keyboard::A)){
 			if(!oneClick){
+				// здесь проверка на пересечение края карты
 				bool isAlowedMoving = true;
 				for (int i = 0; i < 4; i++){
 					int position_x = (int)(10 - ((WIDTH / 2) - current_figure->elem_array[i]->getPosition().x) / 20);
-					int position_y = (int)(((HEIGHT / 2) - current_figure->elem_array[i]->getPosition().y) / 20);
-					if((position_x <= 0) || (elements_matrix[position_x - 1][position_y] != NULL))
-						isAlowedMoving = false;
+					int position_y = (int)(((HEIGHT / 2) - current_figure->elem_array[i]->getPosition().y) / 20) - 1;
+					if (position_y >= 0){
+						if ((position_x <= 0) || (elements_matrix[position_x - 1][position_y] != NULL))
+							isAlowedMoving = false;
+					}
+					else{
+						if ((position_x <= 0))
+							isAlowedMoving = false;
+					}
 				}
 				if (isAlowedMoving)
 					current_figure->move(glm::vec2(-20.f, 0.f));
 				oneClick = true;
 			}
 		}
+		// действие по нажатию клавиши D
 		else if (sf::Keyboard::isKeyPressed(Keyboard::D)){
 			if(!oneClick){
+				// здесь проверка на пересечение края карты
 				bool isAlowedMoving = true;
 				for (int i = 0; i < 4; i++){
 					int position_x = (int)(10 - ((WIDTH / 2) - current_figure->elem_array[i]->getPosition().x) / 20);
-					int position_y = (int)(((HEIGHT / 2) - current_figure->elem_array[i]->getPosition().y) / 20);
-					if((position_x >= 9) || (elements_matrix[position_x][position_y] != NULL))
-						isAlowedMoving = false;
+					int position_y = (int)(((HEIGHT / 2) - current_figure->elem_array[i]->getPosition().y) / 20) - 1;
+					if (position_y >= 0){
+						if((position_x >= 9) || (elements_matrix[position_x + 1][position_y] != NULL))
+							isAlowedMoving = false;
+					}
+					else{
+						if (position_x >= 9)
+							isAlowedMoving = false;
+					}
 				}
 				if (isAlowedMoving)
 					current_figure->move(glm::vec2(20.f, 0.f));
 				oneClick = true;
 			}
 		}
+		// действие по нажатию клавиши E
 		else if (sf::Keyboard::isKeyPressed(Keyboard::E)){
 			if(!oneClick){
+				glm::vec2 pos = current_figure->getPosition();
 				current_figure->rotate();
+				// смещение позиции фигуры в случае пересечения с краем карты
 				bool isInDiapasone = true;
+				
 				do{
 					isInDiapasone = true;
 					for (int i = 0; i < 4; i++){
 						int position_x = (int)(10 - ((WIDTH / 2) - current_figure->elem_array[i]->getPosition().x) / 20);
-						int position_y = (int)(((HEIGHT / 2) - current_figure->elem_array[i]->getPosition().y) / 20);
+						int position_y = (int)(((HEIGHT / 2) - current_figure->elem_array[i]->getPosition().y) / 20) - 1;
 						if(position_x < 0){
 							isInDiapasone = false;
 							current_figure->move(glm::vec2(20.f, 0.f));
@@ -584,42 +781,145 @@ int main(){
 						}
 					}
 				} while(!isInDiapasone);
+				
+				// проверка на возможность поворота текущней фигуры между фигурами
+				direction dir = NONE;
+				bool returnPos = false;
+				bool intersects = false;
+				do{
+					intersects = false;
+					for (int i = 0; i < 4; i++){
+						
+						int position_x = (int)(10 - ((WIDTH / 2) - current_figure->elem_array[i]->getPosition().x) / 20);
+						int position_y = (int)(((HEIGHT / 2) - current_figure->elem_array[i]->getPosition().y) / 20) - 1;
+						
+						if (elements_matrix[position_x][position_y] != NULL || ((position_x < 0) || (position_x > 9))){
+							
+							if (pos.x + 1.f < position_x){
+								if (dir == LEFT){
+									returnPos = true;
+									goto label;
+								}
+								dir = RIGHT;
+								current_figure->move(glm::vec2(-20.f, 0.f));
+							}
+							else {
+								if (dir == RIGHT){
+									returnPos = true;
+									goto label;
+								}
+								dir = LEFT;
+								current_figure->move(glm::vec2(20.f, 0.f));
+							}
+							
+							intersects = true;
+							break;
+						}
+					}
+				} while (intersects);
+				
+				label:
+				if (returnPos) {
+					current_figure->rotate_back();
+					current_figure->setPosition(pos);
+				}
+				
+				oneClick = true;
+			}
+		}
+		else if (sf::Keyboard::isKeyPressed(Keyboard::W)){
+			bool isTouch;
+			if(!oneClick){
+				do{
+					isTouch = true;
+					int position_x, position_y;
+					for (int i = 0; i < 4; i++){
+						
+						position_x = (int)(10 - ((WIDTH / 2) - current_figure->elem_array[i]->getPosition().x) / 20);
+						position_y = (int)(((HEIGHT / 2) - current_figure->elem_array[i]->getPosition().y) / 20) - 1;
+						
+						if(position_y >= 0){
+							if ((position_y >= 19) || (elements_matrix[position_x][position_y + 1] != NULL)){						
+								isTouch = false;
+								glfwSetTime(speed);
+							}
+						}
+					}
+					if (isTouch) current_figure->move(glm::vec2(0.f, -20.f));
+				} while (isTouch);
 				oneClick = true;
 			}
 		}
 		else oneClick = false;
 		
-		if (sf::Keyboard::isKeyPressed(Keyboard::S)){
-			speed = 0.1f;
-		} else speed = 1.f;
+		// действие по нажатию клавиши S
 		
-		if (glfwGetTime() >= speed){
+		
+		if (glfwGetTime() >= (sf::Keyboard::isKeyPressed(Keyboard::S) ? 0.05f : speed)){
 			glfwSetTime(0.0f);
 			
+			
+			// проверка на столкновение с другой фигурой или краем видимой области
 			bool bump = false;
+			
 			int position_x, position_y;
 			for (int i = 0; i < 4; i++){
 				position_x = (int)(10 - ((WIDTH / 2) - current_figure->elem_array[i]->getPosition().x) / 20);
-				position_y = (int)(((HEIGHT / 2) - current_figure->elem_array[i]->getPosition().y) / 20);
-				if ((position_y >= 0) && ((position_y == 20) || (elements_matrix[position_x][position_y + 1] != NULL))) bump = true;
-				 
+				position_y = (int)(((HEIGHT / 2) - current_figure->elem_array[i]->getPosition().y) / 20) - 1;
+				
+				if (position_y >= 0){
+					if ((position_y >= 19) || (elements_matrix[position_x][position_y + 1] != NULL)){
+						bump = true;
+						if (position_y == 0) gameOver = true;
+					}
+				}
 			}
 			
+			// сдвинуть, если нет столкновения
 			if (!bump){
 				current_figure->move(glm::vec2(.0f, -20.f));
 			}
+			// добавить в матрицу элементы и обновить текущую фигуру в случае столкновения
 			else{
 				for (int i = 0; i < 4; i++){
 					position_x = (int)(10 - ((WIDTH / 2) - current_figure->elem_array[i]->getPosition().x) / 20);
-					position_y = (int)(((HEIGHT / 2) - current_figure->elem_array[i]->getPosition().y) / 20);
+					position_y = (int)(((HEIGHT / 2) - current_figure->elem_array[i]->getPosition().y) / 20) - 1;
 					elements_matrix[position_x][position_y] = new element(*current_figure->elem_array[i]);
 				}
-				current_figure = all_varieties[GetRandomNumber(0, 5)];
+				current_figure = all_varieties[GetRandomNumber(0, 6)];
 				current_figure->setPosition(glm::vec2(0.f, 200.f));
 				bump = false;
+				
+				// проверка на полный ряд и удаление такого
+				bool lineIsFull = true; // полный ли ряд
+				// проверка на полноту строки
+				for(int i = 19; i >= 0; i--){
+					lineIsFull = true;
+					for(int j = 0; j < 10; j++){
+						if(elements_matrix[j][i] == NULL){
+							lineIsFull = false;
+						}
+					}
+					// удаление полной строки и смещение 
+					if(!lineIsFull) continue;
+					else{
+						score++;
+						for(int j = i; j > 0; j--){
+							for(int m = 0; m < 10; m++){
+								elements_matrix[m][j] = NULL;
+								if (elements_matrix[m][j - 1] != NULL){
+									delete elements_matrix[m][j];
+									elements_matrix[m][j] = elements_matrix[m][j - 1];
+									elements_matrix[m][j]->move(glm::vec2(0.f, -20.f));
+								}
+							}
+						}
+						i++;
+					}
+				}
 			}
 		}
-		
+		// отрисовка текущей фигуры
 		current_figure->draw();
 		
 		glfwSwapBuffers(window);
